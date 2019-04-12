@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="bd2.Muber.model">
+
+	<class name="Viaje" table="viaje">
+		<id name="id" column="viaje_id">
+			<generator class="native" />
+		</id>
+		
+		<property name="origen"/>
+		<property name="destino"/>
+		<property name="costoTotal"/>	
+
+		<many-to-one name="conductor" column="conductor_id" cascade="all" />
+		
+		<set name="pasajeros" table="pasajero_viaje" cascade="all" lazy="false">
+     		<key column="viaje_id"/>
+     		<many-to-many column="pasajero_id" class="Pasajero"/>
+		</set>
+
+	</class>
+</hibernate-mapping>
